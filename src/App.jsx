@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Global } from "./GlobalStyles";
+import { useState } from "react";
+import styled from "styled-components";
+import { ThemeProvider } from "styled-components";
 
-function App() {
-  const [count, setCount] = useState(0)
+//importing components
+import Editor from "./components/Editor";
+import Result from "./components/Result";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+const App = () => {
+
+    const theme = {
+        background: "#000"
+    }
+
+    return (
+        <ThemeProvider theme={theme}>
+            <Global />
+            <Container>
+                <Editor />
+                <Result />
+            </Container>
+        </ThemeProvider>
+    );
+};
+
+export default App; 
+
+const Container = styled.div`
+    background-color: #000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
